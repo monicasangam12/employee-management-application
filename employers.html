@@ -1,0 +1,23 @@
+<html>
+    <div>
+        <h1>Employees Details List</h1>
+    </div>
+<article>
+    <article class="table-header">
+        <button class="button-add-row" mat-button (click)="addRow()">Add Row</button>
+        <button class="button-edit-row" mat-button (click)="editRow($newEmployer)">Edit Row</button>
+    </article>
+   <table mat-table [dataSource]="dataSource">
+        <ng-container [matColumnDef]="col" *ngFor="let col of displayedColumns">
+        <th mat-header-cell *matHeaderCellDef>
+            {{col}}
+        </th>
+        <td mat-cell *matCellDef="let element">
+            {{element[col]}}
+        </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> 
+</article>
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <div>
+        <h1>Add Employer</h1>
+        <form method="post" [formGroup]="employerForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" formControlName="name" required>
+            <br><br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" formControlName="username" required>
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" formControlName="password" required>
+            <br><br>
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" formControlName="position" required>
+            <br><br>
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary" formControlName="salary" required>
+            <br><br>
+            <button (click)="addEmployer()" type="submit">Add Employer</button>
+            <br><br>
+        </form>
+    </div>
+</html>
