@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
 export class RegisterComponent {
   employeeForm!: FormGroup;
   
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private router: Router){
     this.employeeForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -22,17 +23,12 @@ export class RegisterComponent {
   }
 
   registerEmployee(employeeForm: FormGroup) {
-      employeeForm.addControl("firstName", employeeForm.value.firstName);
-      console.log("First Name: " + employeeForm.value.firstName);
-      employeeForm.addControl("lastName", employeeForm.value.lastName);
-      console.log("First Name: " + employeeForm.value.firstName);
-      employeeForm.addControl("email", employeeForm.value.email);
-      console.log("Email: " + employeeForm.value.email);
-      employeeForm.addControl("username", employeeForm.value.username);
-      console.log("Username: " + employeeForm.value.username);
-      employeeForm.addControl("password", employeeForm.value.password);
-      console.log("Password: " + employeeForm.value.password);
-
+     if(employeeForm.value == true){
+        this.router.navigateByUrl("employees");
+     }
+     else{
+      this.router.navigateByUrl("login");
+     }
   }
 
 
