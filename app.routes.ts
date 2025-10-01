@@ -1,27 +1,17 @@
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login';
-import { RegisterComponent } from './register/register';
-import { EmployersComponent } from './employers/employers';
-import { AddEmployerComponent } from './add-employer/add-employer';
-import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage';
+import { LoginComponent } from './login/login';
 import { EmployeesComponent } from './employees/employees';
-import { SearchEmployeeSkills } from './search-employee-skills/search-employee-skills';
+import { SearchEmployeesSkillComponent } from './search-employees-skill/search-employees-skill';
+import { AddEmployeeComponent } from './add-employee/add-employee';
+
+
 
 export const routes: Routes =  [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
   { path: 'homepage', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'employees', component: EmployeesComponent },
-  { path: 'employers', component: EmployersComponent },
-  { path: 'add-employee', component: AddEmployerComponent},
-  { path: 'add-employer', component: AddEmployerComponent},
-  { path: 'search-employees-skill', component: SearchEmployeeSkills} 
+  { path: 'add-employee/:id', component: AddEmployeeComponent},
+  { path: 'search-employees-skill', component: SearchEmployeesSkillComponent} 
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
