@@ -1,17 +1,11 @@
-export class Employee{
+export interface Employee{
     id: number;
-    name: string
-    position: string;
+    name: string;
     username: string;
     password: string;
+    position: string;
     salary: number;
+    rating: number;
+    isEdit: boolean;
 
-    constructor(id: number, name: string, position: string, salary: number, username: string, password: string){
-        this.id = id;
-        this.name = name;
-        this.position = position;
-        this.salary = salary;
-        this.username = username;
-        this.password = password;
-    }
-}
+ }
