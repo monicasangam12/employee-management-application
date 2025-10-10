@@ -58,7 +58,7 @@ const COLUMNS_SCHEMA = [
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatInputModule, MatTableModule, MatPaginatorModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, HttpClientModule, MatCheckboxModule, MatButton],
+  imports: [CommonModule, FormsModule, MatInputModule, MatTableModule, MatPaginatorModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, HttpClientModule, MatCheckboxModule, MatButton, MatSortModule],
   providers: [EmployeeService, HttpClientModule],
   templateUrl: './employees.html',
   styleUrl: './employees.css'
