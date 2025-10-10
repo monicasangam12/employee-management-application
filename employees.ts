@@ -72,6 +72,8 @@ export class EmployeesComponent {
     selection = new SelectionModel<Employee>(true, []);
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     employeeForm: FormGroup;
+    //sorting data for table
+    @ViewChild(MatSort)sort: MatSort = new MatSort;
 
     
      constructor(private fb: FormBuilder, private employeeService: EmployeeService, private http: HttpClient, private router: Router)  {
@@ -171,6 +173,15 @@ export class EmployeesComponent {
         this.employees.forEach(emp => this.addTableRow(emp as unknown as Employee));
         console.log("Form Array after adding employees:", this.getRows().value);
  }
+
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   checkedOrUnchecked(row: Employee) {
     if (row && row.isEdit === true) {
