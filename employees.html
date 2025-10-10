@@ -23,9 +23,9 @@
             ></mat-checkbox>
         </td>
     </ng-container> -->
-   <table mat-table [dataSource]="dataSource">
+   <table mat-table [dataSource]="dataSource" matSort>
         <ng-container [matColumnDef]="col" *ngFor="let col of displayedColumns;index as i">
-        <th mat-header-cell *matHeaderCellDef >
+        <th mat-header-cell *matHeaderCellDef mat-header-sort>
             <span *ngIf="columnsSchema[i].key != 'id'">
                 {{col}}
             </span>
