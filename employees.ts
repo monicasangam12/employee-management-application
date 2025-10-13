@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EmployeeService } from '../employee-service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatButton } from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -75,12 +75,13 @@ export enum FORM_MODE {
 @Component({
   selector: 'app-employees',
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatButton, FormsModule, HttpClientModule, MatSortModule],
+  imports: [CommonModule, MatInputModule, MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatButtonModule, FormsModule, HttpClientModule, MatSortModule],
   providers: [EmployeeService],
   templateUrl: './employees.html',
   styleUrl: './employees.css'
 })
 export class EmployeesComponent {
+// appFilter.transform(this.employees, "vi", "name");
 
   //Table Definition
   columnsSchema: any = COLUMNS_SCHEMA;
@@ -97,11 +98,15 @@ export class EmployeesComponent {
   @ViewChild(MatSort)sort: MatSort = new MatSort;
 
   formModeEnum = FORM_MODE;
-  searchText!: Employee;
+  searchText!: string;
   employees: Employee[] = [];
   appFilter: AppFilterPipe = new AppFilterPipe;
 
+  formMode!: FORM_MODE;
   event!: EventEmitter<Employee>;
+
+  filterPosition: any;
+
   //Lifecycle Event
 
   constructor(private employeeService: EmployeeService, private router: Router)  {
@@ -135,6 +140,12 @@ export class EmployeesComponent {
        console.log(this.searchText);
     }) 
     // appFilter.transform(this.employees, "vi", "name");
+  }
+
+  filterEmployeeByPosition() {
+    this.appFilter.transform(this.employees, this.filterPosition, "position");
+    console.log("Filtered Employees by Position:", this.dataSource.data);
+    return this.dataSource;
   }
 
   //Event Handlers
