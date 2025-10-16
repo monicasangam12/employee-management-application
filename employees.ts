@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppFilterPipe } from '../../filter.pipe';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-
+import { ACTION, STATE } from '../employee-state-transition/employee-state-transition';
 
 const COLUMNS_SCHEMA = [
   {
@@ -106,6 +106,8 @@ export class EmployeesComponent {
   event!: EventEmitter<Employee>;
 
   filterPosition: any;
+  state!: STATE;
+  action!: ACTION;
 
   //Lifecycle Event
 
@@ -210,5 +212,115 @@ export class EmployeesComponent {
      console.log(filterValue);
   }
 
+  getDifferentStatesFromStateMachine(){
+    let currentState = {
+      from: STATE.HOMEPAGE,
+      to: STATE.LOGIN,
+      action: ACTION.GO_LOGIN
+    };
+
+
+
+    if(currentState.from == STATE.HOMEPAGE && currentState.to == STATE.LOGIN){
+      this.router.navigateByUrl('login');
+    }else{
+      this.router.navigateByUrl('homepage');
+    }
+
+    if(currentState.from == STATE.HOMEPAGE && currentState.to == STATE.REGISTER){
+      this.router.navigateByUrl('register');
+    }else{
+      this.router.navigateByUrl('homepage');
+    }
+
+    if(currentState.from == STATE.REGISTER && currentState.to == STATE.LOGIN){
+      this.router.navigateByUrl('login');
+    }else{
+      this.router.navigateByUrl('register');
+    }
+
+    if(currentState.from == STATE.LOGIN && currentState.to == STATE.DASHBOARD){
+      this.router.navigateByUrl('employees');
+    }else{
+      this.router.navigateByUrl('login');
+    }
+
+    //dashboard states with zero selection
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_NO_SELECTION){
+      this.router.navigateByUrl('employees');
+    }else{
+      this.router.navigateByUrl('homepage');
+    }
+
+    //dashboard states with one selection
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_ONE_SELECTION){
+      this.router.navigateByUrl('employees');
+    }else{
+      this.router.navigateByUrl('homepage');
+    }
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_ONE_SELECTION){
+      this.router.navigateByUrl('employees');
+    }else{
+      this.router.navigateByUrl('homepage');
+    }
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_ONE_SELECTION){
+      this.router.navigateByUrl('add-employee/:id');
+    }else{
+      this.router.navigateByUrl('employees');
+    }
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_ONE_SELECTION){
+      this.router.navigateByUrl('edit-employee/:id');
+    }else{
+      this.router.navigateByUrl('employees');
+    }
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_ONE_SELECTION){
+      this.router.navigateByUrl('search-employee-skills');
+    }else{
+      this.router.navigateByUrl('employees');
+    }
+
+    //dashboard states with more than one selection
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_MORE_THAN_ONE_SELECTION){
+      this.router.navigateByUrl('add-employee/:id');
+    }else{
+      this.router.navigateByUrl('employees');
+    }
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_MORE_THAN_ONE_SELECTION){
+      this.router.navigateByUrl('edit-employee/:id');
+    }else{
+      this.router.navigateByUrl('employees');
+    }
+
+    if(currentState.from == STATE.DASHBOARD && currentState.to == STATE.DASHBOARD_WITH_MORE_THAN_ONE_SELECTION){
+      this.router.navigateByUrl('search-employee-skills');
+    }else{
+      this.router.navigateByUrl('employees');
+    }
+
+    console.log("Employees current state in state machine" ,currentState);
+
+    let nextState = {
+      from: STATE.LOGIN,
+      to: STATE.DASHBOARD,
+      action: ACTION.GO_LOGIN
+    };
+
+    console.log("Employees next state in state machine", nextState);
+
+    let previousState = {
+      from: STATE.HOMEPAGE,
+      to: STATE.REGISTER,
+      action: ACTION.GO_REGISTER
+    }
+
+    console.log("Employees previous state in state machine", previousState);
+  }
 }
       
