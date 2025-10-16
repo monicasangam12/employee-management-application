@@ -3,6 +3,7 @@
         <h1>Employees Details List</h1>
     </div>
     <article class="table-header">
+        <button class="button-state-machine-step" (click)="getDifferentStatesFromStateMachine()">Get the current state machine step</button>
         <button class="button-add-row" mat-button (click)="addRowButtonHandler(formMode)">Add Row</button>
         <button class="button-edit-row" mat-button (click)="editRowButtonHandler(formMode)">Edit Row</button>
         <button class="button-delete-row" mat-button (click)="deleteRowButtonHandler(formMode)">Delete Row</button>
